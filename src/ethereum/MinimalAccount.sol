@@ -21,7 +21,7 @@ contract MinimalAccount is IAccount, Ownable {
     error MinimalAccount__NotFromEntryPointOrOwner();
 
     // Error thrown when a call to an external contract fails
-    error MiniamlAccount__CallFailed(bytes);
+    error MinimalAccount__CallFailed(bytes);
 
     /*//////////////////////////////////////////////////////////////
                             STATE VARIABLES
@@ -70,7 +70,7 @@ contract MinimalAccount is IAccount, Ownable {
     function execute(address dest, uint256 value, bytes calldata functionData) external requireFromEntryPointOrOwner {
         (bool success, bytes memory result) = dest.call{value: value}(functionData);
         if (!success) {
-            revert MiniamlAccount__CallFailed(result);
+            revert MinimalAccount__CallFailed(result);
         }
     }
 
